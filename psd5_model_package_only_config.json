@@ -1,0 +1,39 @@
+{
+  "input_model": {
+    "type": "ONNXModel",
+    "model_path": "C:/Users/Administrator/Desktop/Preetha/20251210_npu_models_msft_por_196215/PSD5_v1/Model_PSD5_1_v1_0_295_qdq_proxy.onnx"
+  },
+  "systems": {
+    "local_system": {
+      "type": "LocalSystem",
+      "accelerators": [
+        { "device": "npu", "execution_providers": [ "OpenVINOExecutionProvider" ] }
+      ]
+    }
+  },
+  "host": "local_system",
+  "target": "local_system",
+  "passes": {
+    "ov_model_package": {
+      "type": "OpenVINOModelPackage",
+      "package_name": "psd5-model",
+      "package_only": true,
+      "compiled_model_paths": {
+        "643E": "C:/Users/Administrator/Desktop/Preetha/psd5_package_out/psd5-model.ortpackage/psd5-model/psd5-model.npu_643E/model_ctx.onnx",
+        "B03E": "C:/Users/Administrator/Desktop/Preetha/psd5_package_out/psd5-model.ortpackage/psd5-model/psd5-model.npu_B03E/model_ctx.onnx"
+      },
+      "target_devices": [ "643E", "B03E" ],
+      "output_ctx_name": "model_ctx.onnx",
+      "session_options": {
+        "ep.context_file_path": "model_ctx.onnx"
+      },
+      "create_shared_asset": true
+    }
+  },
+  "engine": {
+    "search_strategy": false,
+    "evaluate_input_model": false,
+    "no_artifacts": true,
+    "output_dir": "C:/Users/Administrator/Desktop/Preetha/psd5_package_only_out"
+  }
+}
